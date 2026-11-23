@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dispositivos electromagnéticos: un mal necesario del siglo XXI</title>
+<style>
+:root{
+  --bg:#eef3f9;--grid:#d5e0ee;--card:#ffffff;--ink:#10213f;--muted:#51627f;--line:#c9d6e8;
+  --n:#d93f3f;--s:#2d6cdf;--green:#17996a;--copper:#b9772f;--glow:#ffd23f;--warn:#c2410c;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0b1426;--grid:#16233d;--card:#122039;--ink:#e8effb;--muted:#9db0cf;--line:#273a5c;--n:#ff6b6b;--s:#6aa5ff;--green:#3fd29a;--copper:#e0a050;--warn:#ff9a5c}
+}
+:root[data-theme="dark"]{--bg:#0b1426;--grid:#16233d;--card:#122039;--ink:#e8effb;--muted:#9db0cf;--line:#273a5c;--n:#ff6b6b;--s:#6aa5ff;--green:#3fd29a;--copper:#e0a050;--warn:#ff9a5c}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 18px 48px}
+h1,h2{font-family:Georgia,"Times New Roman",serif;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,6.2vw,3.2rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,4.6vw,2.1rem);margin-bottom:8px}
+p{margin:0 0 12px;max-width:62ch}
+section{margin-top:56px}
+.muted{color:var(--muted)}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--s);outline-offset:2px}
+.theme{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.9rem}
+.who{font-size:.9rem;color:var(--muted);margin-top:10px}
+
+/* Hero: bobina */
+.lab{margin-top:22px;background:var(--card);border:2px solid var(--ink);border-radius:6px;padding:16px}
+.lab svg{width:100%;height:auto;display:block}
+.mag{animation:slide 1.6s ease-in-out infinite alternate}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(120px)}}
+.bulb{transition:opacity .2s}
+.ctrls{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-top:10px}
+@media (max-width:560px){.ctrls{grid-template-columns:1fr}}
+label{display:block;font-weight:600;font-size:.95rem}
+input[type=range]{width:100%;accent-color:var(--s)}
+.read{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.read div{flex:1 1 130px;border-left:4px solid var(--glow);padding:2px 10px}
+.read b{display:block;font-size:1.5rem;font-family:Georgia,serif}
+.formula{font-family:Georgia,serif;font-style:italic;font-size:1.1rem}
+
+/* Ventajas */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.tab{border:2px solid var(--ink);background:transparent;border-radius:6px;padding:8px 14px;font-weight:600}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.panel{border-left:6px solid var(--green);background:var(--card);padding:14px 18px;border-radius:0 6px 6px 0;min-height:130px}
+.panel strong{font-family:Georgia,serif;font-size:1.2rem}
+
+/* Residuos */
+.big{font-family:Georgia,serif;font-size:clamp(3.4rem,14vw,6.4rem);line-height:1;color:var(--warn)}
+.bar{display:flex;height:44px;border:2px solid var(--ink);border-radius:6px;overflow:hidden;margin:14px 0 6px}
+.bar span{display:flex;align-items:center;padding:0 10px;font-weight:700;font-size:.9rem;color:#fff;white-space:nowrap;overflow:hidden;transition:width 1.2s ease}
+.b1{background:var(--green);width:0}.b2{background:var(--warn);width:0}
+.trend{display:flex;align-items:flex-end;gap:18px;margin-top:16px;height:120px}
+.trend div{flex:0 0 90px;background:var(--warn);color:#fff;text-align:center;border-radius:4px 4px 0 0;padding-top:4px;font-weight:700}
+.trend div+div{opacity:.7}
+
+/* Calculadora */
+.calc{background:var(--card);border:2px solid var(--ink);border-radius:6px;padding:16px;margin-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:5px 12px;font-size:.9rem}
+.chip:hover{border-color:var(--s)}
+.res{display:flex;gap:16px;flex-wrap:wrap;align-items:baseline;margin-top:12px}
+.res b{font-family:Georgia,serif;font-size:2.2rem;color:var(--s)}
+
+/* Compromisos */
+.acts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:14px}
+.act{display:flex;gap:10px;align-items:center;text-align:left;border:2px solid var(--line);background:var(--card);border-radius:6px;padding:12px}
+.act[aria-pressed="true"]{border-color:var(--green);background:color-mix(in srgb,var(--green) 14%,var(--card))}
+.act i{flex:0 0 26px;height:26px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700}
+.act[aria-pressed="true"] i{background:var(--green);border-color:var(--green);color:#fff}
+.prog{height:14px;border:2px solid var(--ink);border-radius:999px;overflow:hidden;margin-top:16px}
+.prog span{display:block;height:100%;width:0;background:var(--green);transition:width .4s}
+footer{margin-top:56px;padding-top:16px;border-top:2px solid var(--ink);font-size:.88rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.mag{animation:none}.bar span,.prog span{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="top">
+    <h1>Dispositivos electromagnéticos: un mal necesario del siglo XXI</h1>
+    <button class="theme" id="theme" type="button" aria-label="Cambiar entre tema claro y oscuro">Tema</button>
+  </div>
+  <p class="who">Física II · Fundación Universitaria del Área Andina · Noviembre de 2026<br>Anyi Lorena Gallo Báez, Wilmer Dávila Ríos y Edward Fernando Torres Franco</p>
+</header>
+
+<section id="funciona" style="margin-top:24px">
+  <h2>Mueve el imán y mira cómo nace la corriente</h2>
+  <p>Cuando el flujo magnético que atraviesa una bobina cambia, aparece un voltaje. Así trabajan los generadores, los transformadores y la carga inalámbrica. Cambia las espiras y el tiempo del movimiento y observa el bombillo.</p>
+  <div class="lab">
+    <svg viewBox="0 0 320 170" role="img" aria-label="Un imán entra y sale de una bobina conectada a un bombillo">
+      <path d="M92 100 V150 H262 V132" fill="none" stroke="var(--ink)" stroke-width="3"/>
+      <path d="M214 100 H250 V108" fill="none" stroke="var(--ink)" stroke-width="3"/>
+      <g fill="none" stroke="var(--copper)" stroke-width="5">
+        <ellipse cx="100" cy="100" rx="12" ry="34"/><ellipse cx="124" cy="100" rx="12" ry="34"/><ellipse cx="148" cy="100" rx="12" ry="34"/><ellipse cx="172" cy="100" rx="12" ry="34"/><ellipse cx="196" cy="100" rx="12" ry="34"/>
+      </g>
+      <g class="mag" id="mag">
+        <rect x="6" y="86" width="30" height="28" fill="var(--s)"/><rect x="36" y="86" width="30" height="28" fill="var(--n)"/>
+        <text x="21" y="105" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">S</text>
+        <text x="51" y="105" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">N</text>
+      </g>
+      <g class="bulb" id="bulb" opacity=".3">
+        <circle cx="256" cy="94" r="26" fill="var(--glow)"/>
+        <circle cx="256" cy="94" r="38" fill="var(--glow)" opacity=".25"/>
+      </g>
+      <circle cx="256" cy="94" r="26" fill="none" stroke="var(--ink)" stroke-width="3"/>
+      <rect x="246" y="120" width="20" height="12" fill="var(--ink)"/>
+    </svg>
+    <div class="ctrls">
+      <div><label for="nTurns">Espiras (N): <span id="nOut">200</span></label><input id="nTurns" type="range" min="50" max="400" step="10" value="200"></div>
+      <div><label for="dt">Tiempo del cambio (Δt): <span id="dtOut">0,2</span> s</label><input id="dt" type="range" min="0.1" max="1" step="0.05" value="0.2"></div>
+    </div>
+    <div class="read" aria-live="polite">
+      <div><b id="emf">5 V</b>fem inducida</div>
+      <div><b id="cur">0,25 A</b>corriente (R = 20 Ω)</div>
+    </div>
+    <p class="formula" style="margin-top:12px">ε = N · ΔΦ / Δt, con ΔΦ = 0,005 Wb (el mismo caso del ejemplo 3 del eje 4). La ley de Lenz explica por qué el signo real es negativo: la corriente se opone al cambio que la produce.</p>
+  </div>
+</section>
+
+<section id="ventajas">
+  <h2>Por qué no podemos soltarlos</h2>
+  <p>Elige un campo y descubre qué principio físico hay detrás.</p>
+  <div class="tabs" role="tablist" aria-label="Ventajas">
+    <button class="tab" role="tab" aria-selected="true" data-i="0">Comunicación</button>
+    <button class="tab" role="tab" aria-selected="false" data-i="1">Salud</button>
+    <button class="tab" role="tab" aria-selected="false" data-i="2">Transporte</button>
+    <button class="tab" role="tab" aria-selected="false" data-i="3">Energía</button>
+    <button class="tab" role="tab" aria-selected="false" data-i="4">Hogar</button>
+  </div>
+  <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+</section>
+
+<section id="desventajas">
+  <h2>El costo que casi nunca vemos</h2>
+  <p>Según el <i>Global E-waste Monitor 2024</i>, en 2022 el mundo generó:</p>
+  <div class="big"><span id="count">0</span> millones</div>
+  <p style="margin-top:4px"><b>de toneladas de residuos electrónicos.</b> Solo cerca del 22 % se documentó como recolectado y reciclado de forma adecuada.</p>
+  <div class="bar" id="bar" role="img" aria-label="22 % reciclado, 78 % sin documentar"><span class="b1" data-w="22">22 % reciclado</span><span class="b2" data-w="78">78 % sin documentar</span></div>
+  <div class="trend" role="img" aria-label="62 millones en 2022 y 82 millones proyectados en 2030">
+    <div style="height:76%">62<br>2022</div><div style="height:100%">82<br>2030</div>
+  </div>
+  <p class="muted" style="margin-top:8px">Millones de toneladas. La cifra de 2030 es una proyección. Además, muchos aparatos contienen plomo, mercurio o cadmio, y sus baterías requieren litio y cobalto extraídos de la naturaleza.</p>
+</section>
+
+<section id="consumo">
+  <h2>¿Cuánta energía gasta tu aparato?</h2>
+  <p>Recuerda que P = V · I y que E = P · t. Elige un ejemplo o mueve los controles.</p>
+  <div class="calc">
+    <div class="chips">
+      <button class="chip" type="button" data-w="10" data-h="2">Cargador de celular (10 W, 2 h)</button>
+      <button class="chip" type="button" data-w="100" data-h="5">Televisor (100 W, 5 h)</button>
+      <button class="chip" type="button" data-w="60" data-h="8">Computador (60 W, 8 h)</button>
+    </div>
+    <div class="ctrls">
+      <div><label for="w">Potencia: <span id="wOut">100</span> W</label><input id="w" type="range" min="5" max="1500" step="5" value="100"></div>
+      <div><label for="h">Horas por día: <span id="hOut">5</span> h</label><input id="h" type="range" min="0.5" max="24" step="0.5" value="5"></div>
+    </div>
+    <div class="res" aria-live="polite"><b id="kwh">15 kWh</b><span id="eq"></span></div>
+    <p class="muted" style="margin:8px 0 0">Consumo estimado en 30 días. Cuenta de ejemplo: 100 W × 5 h × 30 = 15 000 Wh = 15 kWh.</p>
+  </div>
+</section>
+
+<section id="acciones">
+  <h2>Usar con criterio, reparar y reciclar</h2>
+  <p>Marca los compromisos que sí puedes asumir esta semana.</p>
+  <div class="acts" id="acts"></div>
+  <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="progWrap"><span id="prog"></span></div>
+  <p id="msg" style="margin-top:10px;font-weight:600">Aún no has marcado ninguno.</p>
+</section>
+
+<footer>
+  Fuentes: Baldé, C. P. et al. (2024). <i>The Global E-waste Monitor 2024</i>. UIT y UNITAR · Material del módulo de Física II, eje 4 · Resnick (2007), Sears y Serway (2018).
+</footer>
+</main>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var fmt=function(x,d){return x.toLocaleString("es-CO",{maximumFractionDigits:d})};
+
+  // Tema
+  var root=document.documentElement;
+  $("theme").addEventListener("click",function(){
+    var dark=root.getAttribute("data-theme")==="dark"||(root.getAttribute("data-theme")!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);
+    root.setAttribute("data-theme",dark?"light":"dark");
+  });
+
+  // Bobina
+  function coil(){
+    var n=+$("nTurns").value,dt=+$("dt").value,e=n*0.005/dt,i=e/20;
+    $("nOut").textContent=n;$("dtOut").textContent=fmt(dt,2);
+    $("emf").textContent=fmt(e,1)+" V";$("cur").textContent=fmt(i,2)+" A";
+    $("bulb").setAttribute("opacity",(0.12+0.88*Math.min(1,e/20)).toFixed(2));
+    $("mag").style.animationDuration=(dt*3).toFixed(2)+"s";
+  }
+  $("nTurns").addEventListener("input",coil);$("dt").addEventListener("input",coil);coil();
+
+  // Ventajas
+  var adv=[
+    ["Comunicación","Celulares y computadores funcionan con circuitos eléctricos y electrónicos. Permiten estudiar, trabajar y hablar con alguien al otro lado del mundo en segundos."],
+    ["Salud","La resonancia magnética usa campos magnéticos intensos para mostrar el interior del cuerpo sin cirugía. Es un campo magnético B puesto al servicio del diagnóstico."],
+    ["Transporte","Un motor eléctrico aprovecha la fuerza magnética sobre una corriente (F = q·v·B·sen α) y no emite gases en el punto de uso."],
+    ["Energía","Los generadores se basan en la ley de Faraday y los transformadores llevan la electricidad a hogares e industrias con pocas pérdidas."],
+    ["Hogar","Las viviendas se conectan en paralelo: como comprobamos en PhET, cada aparato recibe los mismos 9,00 V de la simulación y, si uno falla, los demás siguen funcionando."]
+  ];
+  var tabs=document.querySelectorAll(".tab");
+  function showAdv(k){
+    tabs.forEach(function(t,j){t.setAttribute("aria-selected",j===k?"true":"false")});
+    $("panel").innerHTML="<strong>"+adv[k][0]+"</strong><p style=\"margin:6px 0 0\">"+adv[k][1]+"</p>";
+  }
+  tabs.forEach(function(t,j){t.addEventListener("click",function(){showAdv(j)})});showAdv(0);
+
+  // Residuos (contador y barra al llegar a la sección)
+  var done=false;
+  function runWaste(){
+    if(done)return;done=true;
+    var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll("#bar span").forEach(function(s){s.style.width=s.dataset.w+"%"});
+    if(reduce){$("count").textContent="62";return}
+    var t0=null;
+    function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1400);$("count").textContent=Math.round(62*p);if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(en,ob){if(en[0].isIntersecting){runWaste();ob.disconnect()}},{threshold:.35}).observe($("desventajas"));
+  }else{runWaste()}
+
+  // Calculadora
+  function calc(){
+    var w=+$("w").value,h=+$("h").value,k=w*h*30/1000;
+    $("wOut").textContent=w;$("hOut").textContent=fmt(h,1);
+    $("kwh").textContent=fmt(k,1)+" kWh";
+    var r=k/0.6;
+    $("eq").textContent=r<1.05?"Casi lo mismo que un celular cargándose 2 h al día.":"Equivale a unos "+fmt(r,0)+" cargadores de celular conectados 2 h al día.";
+  }
+  $("w").addEventListener("input",calc);$("h").addEventListener("input",calc);
+  document.querySelectorAll(".chip").forEach(function(c){c.addEventListener("click",function(){$("w").value=c.dataset.w;$("h").value=c.dataset.h;calc()})});
+  calc();
+
+  // Compromisos
+  var acts=["Reparar antes de reemplazar","Reciclar en puntos autorizados","Apagar lo que no uso","Elegir equipos eficientes","No cambiar por moda","Compartir lo aprendido"];
+  var count=0;
+  acts.forEach(function(a){
+    var b=document.createElement("button");b.type="button";b.className="act";b.setAttribute("aria-pressed","false");
+    b.innerHTML="<i>✓</i><span>"+a+"</span>";
+    b.addEventListener("click",function(){
+      var on=b.getAttribute("aria-pressed")==="true";
+      b.setAttribute("aria-pressed",on?"false":"true");count+=on?-1:1;
+      $("prog").style.width=(count/6*100)+"%";$("progWrap").setAttribute("aria-valuenow",count);
+      $("msg").textContent=count===0?"Aún no has marcado ninguno.":count<6?"Llevas "+count+" de 6 compromisos. Cada hábito suma.":"Los seis compromisos están marcados. Así se usa la tecnología con criterio.";
+    });
+    $("acts").appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
